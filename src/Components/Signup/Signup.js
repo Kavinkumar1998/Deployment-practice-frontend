@@ -17,8 +17,7 @@ import { useState } from 'react';
 
 
 const formValidationSchema = yup.object({
-    FirstName: yup.string().required("required"),
-   LastName: yup.string().required("required"),
+    Name: yup.string().required("required"),
   Email: yup.string().email().required("Email address is required"),
   Password: yup.string().required("password required").min(8),
 });
