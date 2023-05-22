@@ -135,7 +135,7 @@ export const Signup =()=>{
 
             </Grid>
             <Button
-              type="button"
+              type="submit"
               fullWidth
               variant="contained"  
             >
