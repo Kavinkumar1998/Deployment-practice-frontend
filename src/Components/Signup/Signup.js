@@ -135,10 +135,9 @@ export const Signup =()=>{
 
             </Grid>
             <Button
-              type="submit"
+              type="button"
               fullWidth
-              variant="contained"
-             
+              variant="contained"  
             >
               Sign Up
             </Button>

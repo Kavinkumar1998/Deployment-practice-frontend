@@ -7,6 +7,7 @@ import Forgetpassword from './Components/Forgetpassword/Forgetpassword';
 import { VerifyOTP } from './Components/Verifyotp/Verifyotp';
 import { Setpassword } from './Components/Setpassword/Setpassword';
 import { Home } from './Components/Home/Home';
+import About from './Components/About/About';
 
 function App() {
   return (
@@ -36,6 +37,11 @@ function App() {
       
       <Route path="/Home">
      <Home/>
+      </Route>
+
+      
+      <Route path="/About/:Id">
+     <About/>
       </Route>
 
     </div>
