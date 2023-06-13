@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl, InputLabel } from '@mui/material';
 import "./About.css"
 
 const About = () => {
-
+ const history = useHistory();
   const [Qty, setQty] = useState('');
 
   const handleChange = (event) => {
@@ -40,13 +40,29 @@ const About = () => {
 const found = prod.filter(obj=>obj._id === Id);
   console.log(found);
 
-
-const addtocart = (found)=>{
+  const  addtocart = async()=>{
+    try{
+     const values={ "product": found,"quantity":Qty,"user":localStorage.getItem("Id")}
+      const data = await fetch(`https://phonecart.onrender.com/addtocart`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(values),
+      })
+      const result = await data.json();
+            console.log(result);
+              if (data.status === 400) {
+            console.log(result);
   
-}
-
-
-
+              } else {
+                history.push("/Cart");
+             
+              }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+ 
 
 
   return (
@@ -55,19 +71,23 @@ const addtocart = (found)=>{
     <div className='main-about'>
       {found.map((phone)=>(  
             <div className="t-container" key ={phone._id}>
-              <section className="t-title">Tittle : {phone.product}</section>
+                <div ClassName="left">
+              <p className="t-title"> {phone.product}</p>
             <div className="t-contentArea">
-             <div ClassName="left">
-                  <img src={phone.image} className="image" alt="Poster"/>
+                  <img src={phone.image} className="t-image" alt="Poster"/>
+                  </div>
                   </div>
            <div className="right">
-           <section className="t-title">Company : {phone.company}</section>
-           <section className="t-title">Model : {phone.model}</section>
-           <section className="t-About">Price : {phone.price}</section>
-           <section className="t-released">Highlight : {phone.highlight}</section>  
-           </div>
-           <FormControl  >
-  <InputLabel sx={{color:"white"}} id="demo-simple-select-label">Quantity</InputLabel>
+           <p className="t-company">Company : {phone.company}</p>
+           <p className="t-model">Model : {phone.model}</p>
+           <p className="t-price">Price : {phone.price}</p>
+
+           <p className="t-Highlight">Highlight : {phone.highlight.map(function(ele,idx){
+ return (<li key={idx}>{ele}</li>)
+           })}</p>  
+      <div className='bts'>
+          <span>Quantity :<FormControl  >
+  <InputLabel sx={{color:"white"}} id="demo-simple-select-label"></InputLabel>
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
@@ -80,10 +100,11 @@ const addtocart = (found)=>{
     <MenuItem value={2}>2</MenuItem>
     <MenuItem value={3}>3</MenuItem>
   </Select>
-</FormControl>
-<button onSubmit={addtocart(found)} >Add to cart</button>
+</FormControl> </span> 
+<button onClick = {addtocart} >Add to cart</button></div>
             </div>
-            </div>  ))}
+            </div>
+             ))}
            
     </div>
     </div>
@@ -91,3 +112,4 @@ const addtocart = (found)=>{
 }
 
 export default About
+

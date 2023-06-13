@@ -8,6 +8,7 @@ import { VerifyOTP } from './Components/Verifyotp/Verifyotp';
 import { Setpassword } from './Components/Setpassword/Setpassword';
 import { Home } from './Components/Home/Home';
 import About from './Components/About/About';
+import { Cart } from './Components/Cart/Cart';
 
 function App() {
   return (
@@ -42,6 +43,10 @@ function App() {
       
       <Route path="/About/:Id">
      <About/>
+      </Route>
+
+      <Route path="/Cart">
+     <Cart/>
       </Route>
 
     </div>
