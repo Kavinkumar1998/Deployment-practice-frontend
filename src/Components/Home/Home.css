@@ -3,10 +3,7 @@
     margin:0px;
 
 }
-.card-container{
-    background-color: rgb(163, 32, 32);
-   width: 100%;
-}
+
 .main-content{
     width:100vw;
     height: 50px;
@@ -56,7 +53,7 @@ width: 240px;
 .row>*:hover{
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
      cursor: pointer;
-     transform:scale(1.2)
+     transform:scale(1.1)
  
  }
  

@@ -52,8 +52,9 @@ const found = prod.filter(obj=>obj._id === Id);
             console.log(result);
               if (data.status === 400) {
             console.log(result);
-  
+            alert(JSON.stringify(result));
               } else {
+                alert(JSON.stringify(result));
                 history.push("/Cart");
              
               }
