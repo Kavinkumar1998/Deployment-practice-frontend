@@ -29,6 +29,6 @@ h3{
         width: auto;
        display: flex;
        flex-direction: column;
-       height: auto;
+       height: 100vh;
     }
 }
