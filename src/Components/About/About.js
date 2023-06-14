@@ -67,7 +67,7 @@ const found = prod.filter(obj=>obj._id === Id);
 
 
   return (
-    <div>
+    <div className='about'>
         <Navbar/>
     <div className='main-about'>
       {found.map((phone)=>(  
@@ -79,11 +79,11 @@ const found = prod.filter(obj=>obj._id === Id);
                   </div>
                   </div>
            <div className="right">
-           <p className="t-company">Company : {phone.company}</p>
-           <p className="t-model">Model : {phone.model}</p>
-           <p className="t-price">Price : {phone.price}</p>
+           <p className="t-content">Company : {phone.company}</p>
+           <p className="t-content">Model : {phone.model}</p>
+           <p className="t-content">Price : {phone.price}</p>
 
-           <p className="t-Highlight">Highlight : {phone.highlight.map(function(ele,idx){
+           <p className="t-content">Highlight : {phone.highlight.map(function(ele,idx){
  return (<li key={idx}>{ele}</li>)
            })}</p>  
       <div className='bts'>
@@ -95,14 +95,16 @@ const found = prod.filter(obj=>obj._id === Id);
     value={Qty}
     label="Quantity"
     onChange={handleChange}
+    className='quantity'
     sx={{height:"2.5rem",width:"5rem",backgroundColor:"rgb(94, 219, 44)",marginRight:"10px"}}
   >
     <MenuItem value={1}>1</MenuItem>
     <MenuItem value={2}>2</MenuItem>
     <MenuItem value={3}>3</MenuItem>
+    <MenuItem value={4}>4</MenuItem>
   </Select>
 </FormControl> </span> 
-<button onClick = {addtocart} >Add to cart</button></div>
+<button className='button-add' onClick = {addtocart} >Add to cart</button></div>
             </div>
             </div>
              ))}
