@@ -68,7 +68,7 @@ function totalprice(){
       <Navbar/>
 <div className="card-container" >
 
-<div className="main-content"> 
+<div className="cart-content"> 
 
 <Typography sx={{ mt: 3, mb: 2,fontWeight:"Bold",fontSize:"3rem"}} component="h1" variant="h5"> Cart </Typography>
 </div>     

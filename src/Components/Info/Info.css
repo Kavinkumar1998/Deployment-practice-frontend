@@ -1,4 +1,5 @@
-.Main{
+.app-info{
+    width: auto;
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -18,4 +19,16 @@ h4{
 }
 h3{
     margin-top:1rem;  
+}
+@media screen and (max-width: 480px) {
+    .Info{
+        width: auto;
+        height:auto
+    }
+    .app-info{
+        width: auto;
+       display: flex;
+       flex-direction: column;
+       height: auto;
+    }
 }

@@ -1,7 +1,7 @@
 .navbar{
     position:fixed !important;
     height : 10vh;
-    width: 100%;
+    width: 100vw;
     display : flex;
     justify-content:flex-end;
     margin-bottom: 2rem;
@@ -59,13 +59,12 @@ cursor:pointer;
         position: fixed;
         display : flex;
         top: 0;
-        gap:4.5rem;
+        gap:5rem;
         bottom: 0;
         padding: 0;
         padding-top: 5px;
         justify-content: center;
-        width: 100vw;
-        height: 5rem;
+        height: 2rem;
          
 
     }
@@ -85,16 +84,17 @@ cursor:pointer;
         font-weight: 400;
         font-weight: bold;
         font-size:0.8rem;
+       
     }
     .navbar-list >ul{
         display:flex;
-        gap: 0.3rem;
+        gap: 1.2rem;
         margin-right:4rem;
        
       
         }
         .navbar-name{
-            padding-left: 2rem;
+            padding-left: 1rem;
             font-size:0.8rem;
             font-weight:bold;
         }
