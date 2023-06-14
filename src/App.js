@@ -9,6 +9,7 @@ import { Setpassword } from './Components/Setpassword/Setpassword';
 import { Home } from './Components/Home/Home';
 import About from './Components/About/About';
 import { Cart } from './Components/Cart/Cart';
+import { Info } from './Components/Info/Info';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
 
       <Route path="/Cart">
      <Cart/>
+      </Route>
+
+      <Route path="/Info">
+     <Info/>
       </Route>
 
     </div>

@@ -23,7 +23,7 @@ const Navbar = () => {
         <ul style={{listStyleType:"none"}}>
         <Link  to="/Home">   <li>Home</li> </Link>
           <Link  to="/Cart"> <li>Cart</li></Link>
-           <Link  to="/About"> <li>About</li></Link>
+           <Link  to="/Info"> <li>About</li></Link>
            <li  onClick={()=>logout()}>Logout</li>
           
         </ul>
