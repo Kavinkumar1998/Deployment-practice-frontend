@@ -1,3 +1,4 @@
+
 .cart-content{
     width:auto;
     height: 50px;
@@ -45,7 +46,7 @@
     height: 10rem
 }
 .total{
-    height:auto;
+    height:30vh;
     width: 100vw;
     color: rgb(236, 240, 30);
     background-color: rgb(22, 21, 21);
@@ -53,7 +54,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:1rem
+    gap:1rem;
+    margin-top: -30px;
 }
 @media screen and (max-width: 480px) {
  
@@ -65,8 +67,9 @@
         place-items: center;
     }
     .total{
-        width:auto;
-      transform: scale(0.8);
+        height:20vh;
+     margin-top: -40px;
+   
     }
 
 

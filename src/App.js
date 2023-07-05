@@ -9,6 +9,7 @@ import { Home } from './Components/Home/Home';
 import About from './Components/About/About';
 import { Cart } from './Components/Cart/Cart';
 import { Info } from './Components/Info/Info';
+import { Orders } from './Components/Orders/Orders';
 
 function App() {
   return (
@@ -51,6 +52,11 @@ function App() {
 
       <Route path="/Info">
      <Info/>
+      </Route>
+
+
+      <Route path="/Order">
+     <Orders/>
       </Route>
 
     </div>

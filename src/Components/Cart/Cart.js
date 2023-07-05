@@ -50,8 +50,10 @@ const data = await response.json();
 console.log(data)
    const updated = cart.filter((data)=>data._id !== Id);
    setcart(updated);
+   alert(JSON.stringify(data));
 }catch(error){
   console.log(error);
+  
 }
 }
 
@@ -71,10 +73,9 @@ const orderDetails = async(cart,total,address)=>{
              if (data.status === 400) {
            console.log(result);
            alert(JSON.stringify(result));
-           history.push("/Order");
              } else {
                alert(JSON.stringify(result));
-             
+               deleteAll();
              }
    }
    catch(error){
@@ -82,6 +83,26 @@ const orderDetails = async(cart,total,address)=>{
    }
   
 }
+
+//function for deleting all items in cart
+const deleteAll = async()=>{
+  try{
+    const response = await fetch(`https://phonecart.onrender.com/deleteAll`,{
+      method:"DELETE",
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+        "Content-Type":"application/json"
+      },
+     });
+  const data = await response.json();
+  console.log(data)
+  history.push("/Order");
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
 
 
 //function for total price
@@ -138,7 +159,16 @@ function totalprice(){
                   multiline
                   rows={3}
                   autoComplete="Address"
-               sx={{backgroundColorcolor:"yellow",border:"2px solid yellow"}}
+                  sx={{
+                    backgroundColor: 'rgb(236, 240, 30)', // Set the background color to yellow
+                    color: 'black', // Set the text color to black
+                    width: '500px', // Set the width to 500px
+                    fontSize: '20px', // Set the font size
+                    marginTop:"5px",
+                    '@media screen and (max-width: 480px)': {
+                      width: '80%', // Change the width to 100% when the screen width is 600px or less
+                    }
+                  }}
                  value={address} // Add this line to bind the value to the state variable
   onChange={(e) => setAddress(e.target.value)}
                 />
