@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar';
 import "./Cart.css";
-import { Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import GooglePayButton from "@google-pay/button-react";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export const Cart = () => {
-
+  const history = useHistory();
+  const [address, setAddress] = useState("");
     const [cart,setcart]= useState ([]);
+    
+
+    //geting cart details
   useEffect(() =>{
     const getcart = async() =>{
         try{
@@ -29,13 +34,16 @@ export const Cart = () => {
       getcart();
   },[])
 
+
+  //removing items from cart
 const removeFromCart = async (Id)=>{
 try{
   console.log(Id);
   const response = await fetch(`https://phonecart.onrender.com/removeFromCart/${Id}`,{
     method:"DELETE",
     headers: {
-     "Content-Type":"application/json"
+      "x-auth-token": localStorage.getItem("token"),
+      "Content-Type":"application/json"
     },
    });
 const data = await response.json();
@@ -47,10 +55,36 @@ console.log(data)
 }
 }
 
+///adding order details
+const orderDetails = async(cart,total,address)=>{
+  try{
+    const values={ "orders":cart,"total":total,"address":address}
+    console.log(values)
+     const data = await fetch(`https://phonecart.onrender.com/addorder`, {
+       method: "POST",
+       headers: {  "x-auth-token": localStorage.getItem("token"),
+       "Content-Type":"application/json" },
+       body: JSON.stringify(values),
+     })
+     const result = await data.json();
+           console.log(result);
+             if (data.status === 400) {
+           console.log(result);
+           alert(JSON.stringify(result));
+           history.push("/Order");
+             } else {
+               alert(JSON.stringify(result));
+             
+             }
+   }
+   catch(error){
+     console.log(error);
+   }
+  
+}
 
 
-
-
+//function for total price
 const  total= totalprice()
 
 function totalprice(){
@@ -95,10 +129,24 @@ function totalprice(){
 </div>
 <div className='order'>
 <h1>Place your order</h1>
+<TextField
+                  required
+                  fullWidth
+                  id="Address"
+                  label="Address"
+                  name="Address"
+                  multiline
+                  rows={3}
+                  autoComplete="Address"
+               sx={{backgroundColorcolor:"yellow",border:"2px solid yellow"}}
+                 value={address} // Add this line to bind the value to the state variable
+  onChange={(e) => setAddress(e.target.value)}
+                />
  <br/>
 <div className='total'>
         <p >Total : Rs . {total}</p>
         <br/>
+       
         <GooglePayButton
             buttonType="plain"
             environment="TEST"
@@ -133,8 +181,7 @@ function totalprice(){
                 countryCode: "IN",
               },
             }}
-            onLoadPaymentData={(paymentRequest) => {
-              console.log("load payment data", paymentRequest);
+            onLoadPaymentData={() => { orderDetails(cart,total,address)
             }}
           />
                 </div>

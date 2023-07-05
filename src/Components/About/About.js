@@ -45,7 +45,8 @@ const found = prod.filter(obj=>obj._id === Id);
      const values={ "product": found,"quantity":Qty,"user":localStorage.getItem("Id")}
       const data = await fetch(`https://phonecart.onrender.com/addtocart`, {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {   "x-auth-token": localStorage.getItem("token"),
+        "Content-Type":"application/json" },
         body: JSON.stringify(values),
       })
       const result = await data.json();
